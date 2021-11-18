@@ -24,6 +24,8 @@ class Database extends \CodeIgniter\Database\Config
 	 */
 	public $defaultGroup = 'default';
 
+
+
 	/**
 	 * The default database connection.
 	 *
@@ -50,6 +52,8 @@ class Database extends \CodeIgniter\Database\Config
 		'failover' => [],
 		'port'     => 3306,
 	];
+
+
 
 	/**
 	 * This database connection is used when
@@ -78,6 +82,7 @@ class Database extends \CodeIgniter\Database\Config
 		'failover' => [],
 		'port'     => 3306,
 	];
+
 
 	//--------------------------------------------------------------------
 
