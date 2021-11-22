@@ -19,7 +19,8 @@ class User extends BaseController
                     'email' => 'required|valid_email',
                     'password' => 'required',
                 ]
-            )) {
+            ))
+        {
 
             $user = $model->where('email', $this->request->getPost('email'))
                 ->where('password', md5($this->request->getPost('password')))
@@ -42,10 +43,6 @@ class User extends BaseController
 
             }
 
-        } else {
-            echo view('templates/header', $data);
-            echo view('login', $data);
-            echo view('templates/footer');
         }
     }
 
@@ -69,7 +66,8 @@ class User extends BaseController
                     'email' => 'required|valid_email|is_unique[users.email]',
                     'password' => 'required|min_length[3]|max_length[200]',
                 ]
-            )) {
+            ))
+        {
             $model->save([
                 'name' => $this->request->getPost('name'),
                 'email' => ($this->request->getPost('email')),
@@ -120,4 +118,11 @@ class User extends BaseController
         echo view('templates/footer');
 
     }
+
+    public function submit()
+    {
+
+    }
+
+
 }
