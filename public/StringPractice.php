@@ -170,12 +170,188 @@ public function Solve_16($str)
 
 
 
-//public function Solve_17($str,$insert,$replace,$pos)
-//{
-//    //$rep = ' '.$rep.' ';
-//   $x = substr_replace($str,$insert,$replace,$pos);
-//   echo $x;
-//}
+public function Solve_17($str,$insert,$replace,$pos)
+{
+    //$rep = ' '.$rep.' ';
+   $x = substr_replace($str,$insert,$replace,$pos);
+   echo $x;
+}
+
+
+
+
+public function Solve_18($str,$start,$len)
+{
+    $x = substr($str,$start,$len);
+    echo $x;
+}
+
+
+
+public function Solve_19($str,$remove)
+{
+  $x = trim($str,$remove);
+  echo $x;
+
+}
+
+
+public function Solve_20($str,$remove,$sep)
+{
+// $x = explode($remove,$str);
+// $y = implode($sep,$x);
+// echo $y;
+
+    $x = str_replace($remove,$sep,$str);
+    echo $x;
+}
+
+
+
+public function Solve_21($str,$trim)
+{
+  $x = rtrim($str,$trim);
+  echo $x;
+}
+
+
+
+public function Solve_22($str,$start, $len)
+{
+   $x = substr($str,$start,$len);
+   echo $x;
+}
+
+
+
+public function Solve_23($str)
+{
+    $search = array("\\","\"","+",":","-","*","/");
+    $replace = " ";
+    echo str_replace($search,$replace,$str);
+}
+
+
+
+
+public function Solve_24($str,$start,$length)
+{
+    $x = substr($str,$start,$length);
+    echo $x;
+}
+
+
+
+
+public function Solve_25($str,$replace,$find)
+{
+    $x = str_replace($find,$replace,$str);
+    echo $x;
+}
+
+
+
+public function Solve_26()
+{
+//    $x = ord('a');       =>ascii value of a
+//    $y = ord('z');       =>ascii value of z
+    for ($i=ord('a');$i<ord('z');$i++)
+    {
+        echo chr($i);
+    }
+}
+
+
+
+public function bubble_sort($arr=array())
+{
+   // sort($arr);
+for ($i=1;$i<=count($arr)-1;$i++)
+  {
+      for ($j=0;$j<count($arr)-1;$j++)
+      {
+          if ($arr[$j]>$arr[$j+1])
+          {
+              $temp = $arr[$j];
+              $arr[$j] = $arr[$j+1];
+              $arr[$j+1] = $temp;
+
+          }
+      }
+  }
+  return $arr;
+}
+
+
+public function swap()
+{
+    $arr = array('a','b');
+    $tem = $arr[0];
+    $arr[0] = $arr[1];
+    $arr[1] = $tem;
+    print_r($arr);
+
+}
+
+
+private function merge($left_arr,$right_arr,$arr)
+{
+    $i = 0;
+    $j = 0;
+    $k = 0;
+    while($i<count($left_arr) && $j<count($right_arr))
+    {
+        if ($left_arr[$i]<=$right_arr[$j])
+        {
+            $arr[$k] = $left_arr[$i];
+            $i++;
+        }
+        else
+        {
+            $arr[$k] = $right_arr[$j];
+            $j++;
+        }
+        $k++;
+    }
+
+    while($i<count($left_arr))
+    {
+        $arr[$k] = $left_arr[$i];
+        $i++;
+        $k++;
+    }
+    while($j<count($right_arr))
+    {
+        $arr[$k] = $right_arr[$j];
+        $j++;
+        $k++;
+    }
+    return $arr;
+}
+
+
+
+
+
+
+
+
+
+public function merge_sort($arr)
+{
+    $count = count($arr);
+    if ($count>1){
+        $var1 = array_chunk($arr,ceil($count/2));
+        echo '<pre>';
+        print_r($var1);echo '-----------------</pre>';
+        $left_arr = $this->merge_sort($var1[0]);
+        $right_arr = $this->merge_sort($var1[1]);
+        $arr = $this->merge($left_arr,$right_arr,$arr);
+
+    }
+    return $arr;
+}
+
 
 
 }
@@ -197,4 +373,17 @@ $obj = new StringPractice();
 //$obj->Solve_14('y');
 //$obj->Solve_15('rayy@example.com', '5');
 //$obj->Solve_16('rayy@example.com');
-$obj->Solve_17('The brown fox', 'quick' ,' ','4');   //no run
+//$obj->Solve_17('The brown fox', 'quick' ,' ','4');   //no run
+//$obj->Solve_18('The quick brown fox', '0' ,'3');
+//$obj->Solve_19('000547023.24','0');
+//$obj->Solve_20('The quick brown fox jumps over the lazy dog','fox',' ');
+//$obj->Solve_21('The quick brown fox jumps over the lazy dog///','/');
+//$obj->Solve_22('http://www.example.com/5478631','23','7');
+//$obj->Solve_23('\"\1+2/3*2:2-3/4*3');
+//$obj->Solve_24('The quick brown fox jumps over the lazy dog','0','25');
+//$obj->Solve_25('2,543.12','',',');
+//$obj->Solve_26();
+$z = $obj->merge_sort(array(5,2,10,9,3,4,6,20,25,100,50));
+echo '<pre>';
+print_r($z);
+
