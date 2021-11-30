@@ -331,19 +331,15 @@ private function merge($left_arr,$right_arr,$arr)
 
 
 
-
-
-
-
-
-
 public function merge_sort($arr)
 {
     $count = count($arr);
     if ($count>1){
         $var1 = array_chunk($arr,ceil($count/2));
-        echo '<pre>';
-        print_r($var1);echo '-----------------</pre>';
+
+        /*echo '<pre>';
+        print_r($var1);echo '-----------------</pre>';*/
+
         $left_arr = $this->merge_sort($var1[0]);
         $right_arr = $this->merge_sort($var1[1]);
         $arr = $this->merge($left_arr,$right_arr,$arr);
@@ -351,6 +347,66 @@ public function merge_sort($arr)
     }
     return $arr;
 }
+
+
+
+public function simple_search($arr,$find)
+{
+    foreach ($arr as $key=>$value)
+    {
+
+        if ($find == $value)
+        {
+            return $key;
+
+        }
+    }
+    return false;
+}
+
+
+
+
+public function binary_search($arr,$search,$first_index=0)
+{
+   $count = count($arr);
+
+   if ($count>1)
+   {
+       $divide = array_chunk($arr,ceil($count/2));    //devide into two parts.
+       $left_array = $divide[0];               //divided part 1.
+       $right_array = $divide[1];                 //divided part 2.
+
+/*        echo '<pre>';
+        print_r($divide);die();*/
+
+      $last_element_left = count($left_array)-1;
+      if ($left_array[$last_element_left]>=$search)
+      {
+          //$last_index = $last_element_left;
+
+/*          echo '<pre>';
+          echo $left_array[$last_element_left];
+          print_r($left_array);
+          echo '</pre>';*/
+          return $this->binary_search($left_array,$search,$first_index);
+      }
+      else
+      {
+          return $this->binary_search($right_array,$search,$first_index+count($left_array));
+      }
+
+   }
+   if ($arr[0] == $search)
+   {
+   return $first_index;
+   }
+   else
+   {
+       return false;
+   }
+}
+
 
 
 
@@ -383,7 +439,8 @@ $obj = new StringPractice();
 //$obj->Solve_24('The quick brown fox jumps over the lazy dog','0','25');
 //$obj->Solve_25('2,543.12','',',');
 //$obj->Solve_26();
-$z = $obj->merge_sort(array(5,2,10,9,3,4,6,20,25,100,50));
+/*$z = $obj->merge_sort(array(5,2,10,9,3,4,6,20,25,100,50));
 echo '<pre>';
-print_r($z);
-
+print_r($z);*/
+$x = $obj->binary_search(array(1,2,3,4,5,6,7,8,9,10),9);
+echo $x;
